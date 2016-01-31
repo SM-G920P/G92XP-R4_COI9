@@ -1,0 +1,6 @@
+kernel.turbo=false
+kernel.interactive=battery
+kernel.scheduler=row
+kernel.vm=tuned
+kernel.gapps=true
+kernel.initd=true

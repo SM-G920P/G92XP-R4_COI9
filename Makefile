@@ -4,6 +4,8 @@ SUBLEVEL = 61
 EXTRAVERSION =
 NAME = TOSSUG Baby Fish
 
+TOOLCHAIN_DIR = /home/buildserver/android/toolchains/aarch64-linux-android-4.9-kernel/bin/aarch64-linux-android-
+
 # *DOCUMENTATION*
 # To see a list of typical targets execute "make help"
 # More info can be located in ./README
@@ -195,7 +197,11 @@ SUBARCH := $(shell uname -m | sed -e s/i.86/x86/ -e s/x86_64/x86/ \
 #ARCH		?= $(SUBARCH)
 #CROSS_COMPILE	?= $(CONFIG_CROSS_COMPILE:"%"=%)
 ARCH		= arm64
-CROSS_COMPILE = ../aarch64-linux-android-4.9/bin/aarch64-linux-android-
+ifdef CONFIG_WITH_CCACHE
+CROSS_COMPILE = $(CCACHE) $(TOOLCHAIN_DIR)
+else
+CROSS_COMPILE = $(TOOLCHAIN_DIR)
+endif
 
 # Architecture as present in compile.h
 UTS_MACHINE 	:= $(ARCH)
